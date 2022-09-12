@@ -1,16 +1,18 @@
----
 Resources:
-  EBSVolume:
-    Type: AWS::EC2::Volume
-    Properties:
+  Ec2Instance:
+    Type: AWS::EC2::Instance
+    Properties:      
       InstanceType: t2.nano
-      AvailabilityZone: us-east-1a
       ImageId: ami-80861296
-    DeletionPolicy: Snapshot
+      Volumes:
+        -
+          Device: "/dev/sdf"
+          VolumeId: !Ref VolumeMount
 
-  MountPoint:
-    Type: AWS::EC2::VolumeAttachment
+  VolumeMount:
+    Type: AWS::EC2::Volume
+    DeletionPolicy: Snapshot
     Properties:
-      InstanceId: !Ref EBSVolume
-      VolumeId: !Ref NewVolume
-      Device: /dev/sdh
+      AvailabilityZone: us-east-1a
+      Size: 10
+      VolumeType: gp2
