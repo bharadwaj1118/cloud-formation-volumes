@@ -19,10 +19,30 @@ VolumeAttachment | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuid
 
 # Design Template
 
-Basic Mount Template
+#### Basic Mount Template
 
 <img width="880" alt="Screenshot 2022-09-12 at 17 42 59" src="https://user-images.githubusercontent.com/67050571/189697631-b1adb0e7-ff34-4b3e-87ac-8721176e9dee.png">
 
-Mount template with SSH
+#### Mount template with SSH
 
 <img width="412" alt="Screenshot 2022-09-13 at 09 03 33" src="https://user-images.githubusercontent.com/67050571/189833021-d531fcba-05bf-4a24-ae02-ed5a5b897af1.png">
+
+
+
+## commands to verify
+
+```shell
+
+lsblk    #list down all the block devices in linux machine
+
+file -s /dev/xvdf #looks for file system
+
+mkdir -p /apps/mywebapps 
+
+mkfs -t xfs /dev/xvdf #sets file system
+
+mount /dev/xvdf /apps/mywebapps
+
+df -h
+
+```
